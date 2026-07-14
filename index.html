@@ -1,0 +1,1897 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="英格兰男子足球国家队世界杯主题宣传网页">
+  <title>England | World Cup Campaign</title>
+
+  <style>
+    /* =========================================================
+       全局设计变量：修改这里即可快速调整页面配色、圆角与阴影
+       ========================================================= */
+    :root {
+      --england-white: #f7f8fb;
+      --england-paper: #ffffff;
+      --england-navy: #071b3f;
+      --england-navy-soft: #102957;
+      --england-blue: #1c3f78;
+      --england-red: #cf1738;
+      --england-red-dark: #a90f2b;
+      --text-main: #10203c;
+      --text-muted: #60708c;
+      --line: rgba(7, 27, 63, 0.14);
+      --shadow-soft: 0 18px 48px rgba(7, 27, 63, 0.12);
+      --shadow-strong: 0 24px 70px rgba(2, 13, 34, 0.28);
+      --radius: 8px;
+      --content-width: 1180px;
+      --header-height: 72px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: calc(var(--header-height) + 18px);
+    }
+
+    body {
+      margin: 0;
+      min-width: 320px;
+      overflow-x: hidden;
+      color: var(--text-main);
+      background: var(--england-white);
+      font-family: Inter, "Segoe UI", "Microsoft YaHei", Arial, sans-serif;
+      line-height: 1.7;
+    }
+
+    body::before {
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      content: "";
+      background:
+        linear-gradient(rgba(7, 27, 63, 0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(7, 27, 63, 0.025) 1px, transparent 1px);
+      background-size: 42px 42px;
+      pointer-events: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    :focus-visible {
+      outline: 3px solid rgba(207, 23, 56, 0.52);
+      outline-offset: 4px;
+    }
+
+    .container {
+      width: min(calc(100% - 48px), var(--content-width));
+      margin-inline: auto;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 12px;
+      color: var(--england-red);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      width: 28px;
+      height: 3px;
+      content: "";
+      background: currentColor;
+    }
+
+    .section-heading {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(260px, 430px);
+      gap: 48px;
+      align-items: end;
+      margin-bottom: 42px;
+    }
+
+    .section-heading h2 {
+      max-width: 760px;
+      margin: 0;
+      color: var(--england-navy);
+      font-size: clamp(2rem, 4.3vw, 4.5rem);
+      line-height: 0.98;
+      letter-spacing: 0;
+    }
+
+    .section-heading p {
+      margin: 0;
+      color: var(--text-muted);
+      font-size: 1rem;
+    }
+
+    .section-number {
+      display: block;
+      margin-bottom: 10px;
+      color: rgba(7, 27, 63, 0.28);
+      font-size: 0.74rem;
+      font-weight: 800;
+    }
+
+    /* =========================================================
+       顶部固定导航
+       ========================================================= */
+    .site-header {
+      position: fixed;
+      inset: 0 0 auto;
+      z-index: 50;
+      height: var(--header-height);
+      color: #fff;
+      background: rgba(7, 27, 63, 0.9);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+      backdrop-filter: blur(18px);
+    }
+
+    .nav-shell {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 100%;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .brand-mark {
+      display: grid;
+      width: 38px;
+      height: 38px;
+      place-items: center;
+      color: var(--england-red);
+      background: #fff;
+      border-radius: 50%;
+      font-weight: 900;
+    }
+
+    .brand-copy {
+      display: grid;
+      line-height: 1.05;
+    }
+
+    .brand-copy strong {
+      font-size: 0.9rem;
+    }
+
+    .brand-copy span {
+      color: rgba(255, 255, 255, 0.62);
+      font-size: 0.65rem;
+      text-transform: uppercase;
+    }
+
+    .main-nav {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .main-nav a {
+      position: relative;
+      color: rgba(255, 255, 255, 0.76);
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: color 180ms ease;
+    }
+
+    .main-nav a::after {
+      position: absolute;
+      right: 0;
+      bottom: -10px;
+      left: 0;
+      height: 2px;
+      content: "";
+      background: var(--england-red);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 180ms ease;
+    }
+
+    .main-nav a:hover,
+    .main-nav a.active {
+      color: #fff;
+    }
+
+    .main-nav a.active::after,
+    .main-nav a:hover::after {
+      transform: scaleX(1);
+    }
+
+    .menu-button {
+      display: none;
+      width: 42px;
+      height: 42px;
+      padding: 0;
+      color: #fff;
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .menu-button span,
+    .menu-button::before,
+    .menu-button::after {
+      display: block;
+      width: 18px;
+      height: 2px;
+      margin: 4px auto;
+      content: "";
+      background: currentColor;
+      transition: transform 180ms ease, opacity 180ms ease;
+    }
+
+    /* =========================================================
+       【主视觉区】板块1：世界杯主题海报横幅
+       图片替换提示：修改 .hero-photo 的 src 即可替换球场大图
+       队徽替换提示：修改 .hero-crest 的 src 即可替换高清队徽
+       ========================================================= */
+    .hero {
+      position: relative;
+      display: grid;
+      min-height: 100svh;
+      overflow: hidden;
+      color: #fff;
+      background: var(--england-navy);
+      isolation: isolate;
+    }
+
+    .hero-photo,
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .hero-photo {
+      z-index: -3;
+      object-fit: cover;
+      object-position: center;
+      filter: saturate(0.8) contrast(1.08);
+    }
+
+    .hero-overlay {
+      z-index: -2;
+      background:
+        linear-gradient(90deg, rgba(4, 17, 43, 0.98) 0%, rgba(4, 17, 43, 0.84) 42%, rgba(4, 17, 43, 0.3) 74%, rgba(4, 17, 43, 0.7) 100%),
+        linear-gradient(0deg, rgba(4, 17, 43, 0.9) 0%, transparent 48%);
+    }
+
+    .hero::after {
+      position: absolute;
+      inset: auto 0 0;
+      z-index: -1;
+      height: 10px;
+      content: "";
+      background: linear-gradient(90deg, var(--england-red) 0 34%, #fff 34% 66%, var(--england-navy-soft) 66%);
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(260px, 0.55fr);
+      gap: 64px;
+      align-items: center;
+      padding-top: calc(var(--header-height) + 72px);
+      padding-bottom: 74px;
+    }
+
+    .hero-kicker {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 24px;
+      color: rgba(255, 255, 255, 0.78);
+      font-size: 0.78rem;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .hero-kicker span:first-child {
+      padding: 7px 10px;
+      color: #fff;
+      background: var(--england-red);
+      border-radius: 3px;
+    }
+
+    .hero h1 {
+      max-width: 880px;
+      margin: 0;
+      font-size: clamp(3.2rem, 8.3vw, 8.2rem);
+      line-height: 0.86;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+
+    .hero h1 span {
+      display: block;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(255, 255, 255, 0.58);
+    }
+
+    .hero-subtitle {
+      max-width: 690px;
+      margin: 28px 0 0;
+      color: rgba(255, 255, 255, 0.78);
+      font-size: clamp(1rem, 1.6vw, 1.22rem);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 34px;
+    }
+
+    .button {
+      display: inline-flex;
+      min-height: 48px;
+      align-items: center;
+      justify-content: center;
+      padding: 0 20px;
+      border: 1px solid transparent;
+      border-radius: 4px;
+      font-size: 0.84rem;
+      font-weight: 800;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform 180ms ease, background 180ms ease, color 180ms ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+    }
+
+    .button-primary {
+      color: #fff;
+      background: var(--england-red);
+    }
+
+    .button-primary:hover {
+      background: var(--england-red-dark);
+    }
+
+    .button-ghost {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.36);
+    }
+
+    .hero-emblem {
+      position: relative;
+      display: grid;
+      justify-items: center;
+      align-self: stretch;
+      align-content: center;
+      min-height: 430px;
+    }
+
+    .hero-emblem::before,
+    .hero-emblem::after {
+      position: absolute;
+      content: "";
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: 50%;
+    }
+
+    .hero-emblem::before {
+      width: min(31vw, 390px);
+      aspect-ratio: 1;
+    }
+
+    .hero-emblem::after {
+      width: min(25vw, 310px);
+      aspect-ratio: 1;
+      border-style: dashed;
+    }
+
+    .hero-crest {
+      position: relative;
+      z-index: 2;
+      width: min(17vw, 210px);
+      max-height: 260px;
+      object-fit: contain;
+      filter: drop-shadow(0 24px 34px rgba(0, 0, 0, 0.38));
+    }
+
+    .emblem-caption {
+      position: absolute;
+      right: 0;
+      bottom: 20px;
+      left: 0;
+      display: flex;
+      justify-content: space-between;
+      padding-top: 13px;
+      color: rgba(255, 255, 255, 0.65);
+      border-top: 1px solid rgba(255, 255, 255, 0.22);
+      font-size: 0.66rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .image-fallback {
+      display: none;
+      width: 100%;
+      min-height: 180px;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      color: rgba(255, 255, 255, 0.84);
+      background: linear-gradient(135deg, var(--england-navy), var(--england-blue));
+      text-align: center;
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+
+    /* =========================================================
+       【国家简介】板块2
+       ========================================================= */
+    .intro-section {
+      padding: 108px 0;
+      background: var(--england-paper);
+    }
+
+    .intro-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      gap: 34px;
+      align-items: center;
+      justify-content: start;
+    }
+
+    .intro-media {
+      position: relative;
+      min-height: 560px;
+    }
+
+    .intro-photo {
+      width: calc(100% - 72px);
+      height: 510px;
+      object-fit: cover;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-strong);
+    }
+
+    .flag-panel {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      width: 225px;
+      padding: 20px;
+      background: #fff;
+      border-top: 5px solid var(--england-red);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .flag-panel img {
+      width: 100%;
+      aspect-ratio: 5 / 3;
+      object-fit: cover;
+      border: 1px solid var(--line);
+    }
+
+    .flag-panel p {
+      margin: 12px 0 0;
+      color: var(--england-navy);
+      font-size: 0.72rem;
+      font-weight: 800;
+    }
+
+    .intro-copy h2 {
+      margin: 0 0 26px;
+      color: var(--england-navy);
+      font-size: clamp(2.2rem, 4.5vw, 4.8rem);
+      line-height: 0.96;
+    }
+
+    .intro-copy > p {
+      margin: 0 0 18px;
+      color: var(--text-muted);
+    }
+
+    .country-facts {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1px;
+      margin-top: 34px;
+      overflow: hidden;
+      background: var(--line);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+    }
+
+    .fact {
+      padding: 22px 18px;
+      background: #fff;
+    }
+
+    .fact strong,
+    .fact span {
+      display: block;
+    }
+
+    .fact strong {
+      color: var(--england-navy);
+      font-size: 1.12rem;
+    }
+
+    .fact span {
+      margin-top: 4px;
+      color: var(--text-muted);
+      font-size: 0.7rem;
+    }
+
+    /* =========================================================
+       【历史战绩】板块3
+       ========================================================= */
+    .history-section {
+      padding: 110px 0;
+      color: #fff;
+      background: var(--england-navy);
+    }
+
+    .history-section .section-heading h2,
+    .history-section .section-number {
+      color: #fff;
+    }
+
+    .history-section .section-heading p {
+      color: rgba(255, 255, 255, 0.62);
+    }
+
+    .history-layout {
+      display: grid;
+      grid-template-columns: minmax(280px, 0.72fr) minmax(0, 1.28fr);
+      gap: 34px;
+    }
+
+    .history-feature {
+      position: relative;
+      min-height: 570px;
+      overflow: hidden;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-strong);
+    }
+
+    .history-feature img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(1) contrast(1.08);
+    }
+
+    .history-feature::after {
+      position: absolute;
+      inset: 0;
+      content: "";
+      background: linear-gradient(0deg, rgba(4, 16, 41, 0.98), transparent 70%);
+    }
+
+    .history-feature-copy {
+      position: absolute;
+      right: 26px;
+      bottom: 28px;
+      left: 26px;
+      z-index: 2;
+    }
+
+    .history-feature-copy strong {
+      display: block;
+      color: #fff;
+      font-size: clamp(3rem, 7vw, 6.5rem);
+      line-height: 0.86;
+    }
+
+    .history-feature-copy span {
+      display: block;
+      margin-top: 12px;
+      color: rgba(255, 255, 255, 0.68);
+      font-size: 0.82rem;
+    }
+
+    .history-cards {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .history-card {
+      position: relative;
+      min-height: 260px;
+      padding: 28px;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: var(--radius);
+      transition: transform 200ms ease, background 200ms ease;
+    }
+
+    .history-card:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateY(-4px);
+    }
+
+    .history-card::before {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 46px;
+      height: 5px;
+      content: "";
+      background: var(--england-red);
+    }
+
+    .history-card .year {
+      color: var(--england-red);
+      font-size: 0.78rem;
+      font-weight: 900;
+    }
+
+    .history-card h3 {
+      margin: 34px 0 12px;
+      color: #fff;
+      font-size: clamp(1.45rem, 2.5vw, 2.2rem);
+      line-height: 1.05;
+    }
+
+    .history-card p {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.62);
+      font-size: 0.86rem;
+    }
+
+    .history-card .metric {
+      position: absolute;
+      right: 20px;
+      bottom: 8px;
+      color: rgba(255, 255, 255, 0.055);
+      font-size: 5.2rem;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    /* 经典世界杯场面：图片故事卡 */
+    .history-stories {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .history-story {
+      position: relative;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: var(--radius);
+      transition: transform 200ms ease, background 200ms ease;
+    }
+
+    .history-story:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateY(-6px);
+    }
+
+    .history-story-media {
+      position: relative;
+      aspect-ratio: 16 / 8.6;
+      overflow: hidden;
+    }
+
+    .history-story-media::after {
+      position: absolute;
+      inset: 0;
+      content: "";
+      background: linear-gradient(0deg, rgba(7, 27, 63, 0.5), transparent 55%);
+    }
+
+    .history-story-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 500ms ease;
+    }
+
+    .history-story:hover .history-story-media img {
+      transform: scale(1.025);
+    }
+
+    .history-story-body {
+      min-height: 330px;
+      padding: 30px;
+      border-top: 5px solid var(--england-red);
+    }
+
+    .history-year {
+      display: block;
+      margin-bottom: 20px;
+      color: #fff;
+      font-size: clamp(5rem, 9vw, 8rem);
+      font-weight: 900;
+      line-height: 0.72;
+      letter-spacing: 0;
+    }
+
+    .history-story h3 {
+      margin: 0 0 13px;
+      color: #fff;
+      font-size: clamp(1.4rem, 2.5vw, 2.15rem);
+      line-height: 1.05;
+    }
+
+    .history-story p {
+      margin: 0 0 12px;
+      color: rgba(255, 255, 255, 0.64);
+      font-size: 0.84rem;
+    }
+
+    .history-score {
+      display: inline-flex;
+      margin-top: 8px;
+      padding: 6px 9px;
+      color: #fff;
+      background: var(--england-red);
+      border-radius: 3px;
+      font-size: 0.72rem;
+      font-weight: 900;
+    }
+    /* =========================================================
+       【球员阵容】板块4
+       球员图片均为可替换占位链接，详见每个 img 上方注释
+       ========================================================= */
+    .squad-section {
+      padding: 110px 0;
+      background: #eef1f6;
+    }
+
+
+    .squad-heading {
+      grid-template-columns: 1fr;
+      margin-bottom: 28px;
+    }
+    .squad-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 20px;
+      margin-bottom: 28px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--line);
+    }
+
+
+    .position-filter {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .filter-button {
+      min-height: 38px;
+      padding: 0 14px;
+      color: var(--england-navy);
+      background: transparent;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .filter-button:hover,
+    .filter-button.active {
+      color: #fff;
+      background: var(--england-navy);
+      border-color: var(--england-navy);
+    }
+
+    .player-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 22px;
+    }
+
+    .player-card {
+      position: relative;
+      min-width: 0;
+      overflow: hidden;
+      background: #fff;
+      border-radius: var(--radius);
+      box-shadow: 0 10px 30px rgba(7, 27, 63, 0.08);
+      transition: transform 220ms ease, box-shadow 220ms ease, opacity 180ms ease;
+    }
+
+    .player-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 22px 44px rgba(7, 27, 63, 0.18);
+    }
+
+    .player-card[hidden] {
+      display: none;
+    }
+
+    .player-image-wrap {
+      position: relative;
+      aspect-ratio: 11 / 14;
+      overflow: hidden;
+      background: linear-gradient(145deg, #eef1f6, #d8deea);
+    }
+
+    .player-image-wrap::after {
+      position: absolute;
+      inset: auto 0 0;
+      height: 45%;
+      content: "";
+      background: linear-gradient(transparent, rgba(7, 27, 63, 0.74));
+      pointer-events: none;
+    }
+
+    .player-image {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center bottom;
+      transition: transform 500ms ease;
+    }
+
+    .player-card:hover .player-image {
+      transform: scale(1.035);
+    }
+
+    .shirt-number {
+      position: absolute;
+      right: 18px;
+      bottom: 12px;
+      z-index: 2;
+      color: #fff;
+      font-size: 3.8rem;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .player-info {
+      padding: 22px 22px 25px;
+      border-top: 4px solid var(--england-red);
+    }
+
+    .player-position {
+      color: var(--england-red);
+      font-size: 0.7rem;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .player-info h3 {
+      margin: 5px 0 10px;
+      color: var(--england-navy);
+      font-size: 1.45rem;
+      line-height: 1.1;
+    }
+
+    .player-info p {
+      margin: 0;
+      color: var(--text-muted);
+      font-size: 0.82rem;
+    }
+
+    /* =========================================================
+       附加板块5：战术风格、出征口号、赛事寄语
+       ========================================================= */
+    .campaign-section {
+      position: relative;
+      padding: 110px 0;
+      overflow: hidden;
+      color: #fff;
+      background: var(--england-red);
+    }
+
+    .campaign-section::before {
+      position: absolute;
+      top: 50%;
+      right: -8vw;
+      width: 42vw;
+      aspect-ratio: 1;
+      content: "";
+      border: 2px solid rgba(255, 255, 255, 0.16);
+      border-radius: 50%;
+      transform: translateY(-50%);
+      box-shadow: 0 0 0 50px rgba(255, 255, 255, 0.04), 0 0 0 100px rgba(255, 255, 255, 0.03);
+    }
+
+    .campaign-grid {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 900px);
+      gap: 34px;
+      align-items: center;
+      justify-content: start;
+    }
+
+    .campaign-title span {
+      color: rgba(255, 255, 255, 0.66);
+      font-size: 0.76rem;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .campaign-title h2 {
+      margin: 14px 0 24px;
+      font-size: clamp(3rem, 7vw, 7.2rem);
+      line-height: 0.88;
+      text-transform: uppercase;
+    }
+
+    .campaign-title p {
+      max-width: 720px;
+      margin: 0;
+      color: rgba(255, 255, 255, 0.74);
+    }
+    .campaign-signoff {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 30px;
+      margin-top: 36px;
+      padding-top: 22px;
+      border-top: 1px solid rgba(255, 255, 255, 0.34);
+      color: #fff;
+      font-size: 0.76rem;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+
+    /* =========================================================
+       页脚
+       ========================================================= */
+    .site-footer {
+      padding: 32px 0;
+      color: rgba(255, 255, 255, 0.64);
+      background: #040e25;
+      font-size: 0.74rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .footer-badge {
+      color: #fff;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(26px);
+      transition: opacity 700ms ease, transform 700ms ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* =========================================================
+       基础手机端自适应
+       ========================================================= */
+    @media (max-width: 980px) {
+      .main-nav {
+        position: absolute;
+        top: var(--header-height);
+        right: 18px;
+        left: 18px;
+        display: none;
+        align-items: stretch;
+        padding: 16px;
+        background: rgba(7, 27, 63, 0.98);
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow-strong);
+      }
+
+      .main-nav.open {
+        display: grid;
+      }
+
+      .main-nav a {
+        padding: 10px;
+      }
+
+      .main-nav a::after {
+        display: none;
+      }
+
+      .menu-button {
+        display: block;
+      }
+
+      .hero-inner,
+      .campaign-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-emblem {
+        display: none;
+      }
+
+      .intro-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .intro-media {
+        max-width: 680px;
+      }
+
+      .history-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .history-feature {
+        min-height: 430px;
+      }
+
+      .player-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 680px) {
+      :root {
+        --header-height: 64px;
+      }
+
+      .container {
+        width: min(calc(100% - 28px), var(--content-width));
+      }
+
+      .section-heading {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        margin-bottom: 30px;
+      }
+
+      .hero {
+        min-height: 820px;
+      }
+
+      .hero-inner {
+        align-content: center;
+        padding-top: 112px;
+      }
+
+      .hero h1 {
+        font-size: clamp(3rem, 18vw, 5rem);
+      }
+
+      .hero-actions .button {
+        width: 100%;
+      }
+
+      .intro-section,
+      .history-section,
+      .squad-section,
+      .campaign-section {
+        padding: 76px 0;
+      }
+
+      .intro-media {
+        min-height: 450px;
+      }
+
+      .intro-photo {
+        width: calc(100% - 38px);
+        height: 400px;
+      }
+
+      .flag-panel {
+        width: 175px;
+        padding: 14px;
+      }
+
+      .country-facts,
+      .history-stories,
+      .history-cards,
+      .player-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .history-card {
+        min-height: 230px;
+      }
+
+  
+    .squad-toolbar {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .player-image-wrap {
+        aspect-ratio: 4 / 4.3;
+      }
+
+      .campaign-title h2 {
+        font-size: clamp(3.3rem, 18vw, 5.4rem);
+      }
+
+
+      .footer-inner {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .position-filter {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        width: 100%;
+      }
+
+      .filter-button {
+        width: 100%;
+        padding-inline: 8px;
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 顶部导航：锚点链接对应各内容板块 -->
+  <header class="site-header">
+    <div class="container nav-shell">
+      <a class="brand" href="#top" aria-label="返回页面顶部">
+        <span class="brand-mark">E</span>
+        <span class="brand-copy">
+          <strong>ENGLAND</strong>
+          <span>World Cup Campaign</span>
+        </span>
+      </a>
+
+      <button class="menu-button" type="button" aria-label="打开导航菜单" aria-expanded="false" aria-controls="main-nav">
+        <span></span>
+      </button>
+
+      <nav class="main-nav" id="main-nav" aria-label="页面导航">
+        <a href="#about">国家简介</a>
+        <a href="#history">世界杯历史</a>
+        <a href="#squad">出战阵容</a>
+        <a href="#campaign">出征宣言</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- =======================================================
+         【主视觉区】板块1
+         下方图片链接均可替换为高清图片。图片失效时 JS 会显示替换提示。
+         ======================================================= -->
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <!-- 主视觉球场图片：替换 src 可使用自己的高清球场/球队照片 -->
+      <img
+        class="hero-photo replaceable-image"
+        src="https://images.unsplash.com/photo-1522778119026-d647f0596c20?auto=format&fit=crop&w=2200&q=88"
+        alt="灯光下的足球场"
+        data-fallback="主视觉图片加载失败，请替换 hero-photo 的 src 图片链接。"
+      >
+      <div class="hero-overlay" aria-hidden="true"></div>
+
+      <div class="container hero-inner">
+        <div class="hero-copy reveal">
+          <div class="hero-kicker">
+            <span>Three Lions</span>
+            <span>World Cup Edition · England</span>
+          </div>
+          <h1 id="hero-title">
+            England
+            <span>World Cup</span>
+          </h1>
+          <p class="hero-subtitle">
+            英格兰国家队｜世界杯征战宣传海报。以三狮之名，承载现代足球的速度、秩序与勇气，向世界最高舞台再次发起挑战。
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#squad">查看三狮阵容</a>
+            <a class="button button-ghost" href="#history">回望世界杯征程</a>
+          </div>
+        </div>
+
+        <div class="hero-emblem reveal" aria-label="英格兰国家队队徽展示区域">
+          <!-- 英格兰队徽：可将下方地址替换为本地或授权的高清队徽图片 -->
+          <img
+            class="hero-crest replaceable-image"
+            src="https://upload.wikimedia.org/wikipedia/en/8/8b/England_national_football_team_crest.svg"
+            alt="英格兰男子足球国家队队徽"
+            data-fallback="队徽加载失败，请替换 hero-crest 的 src 图片链接。"
+          >
+          <div class="emblem-caption">
+            <span>EST. 1872</span>
+            <span>One badge · One nation</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================
+         【国家简介】板块2
+         ======================================================= -->
+    <section class="intro-section" id="about" aria-labelledby="about-title">
+      <div class="container intro-grid">
+        <div class="intro-media reveal">
+          <!-- 英格兰地标图片：替换为伦敦、温布利或其他英格兰地标高清图 -->
+          <img
+            class="intro-photo replaceable-image"
+            src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=1400&q=85"
+            alt="英国伦敦城市地标"
+            data-fallback="地标图片加载失败，请替换 intro-photo 的 src 图片链接。"
+          >
+          <div class="flag-panel">
+            <!-- 英格兰国旗图片：可替换为本地 flag-england.svg -->
+            <img
+              class="replaceable-image"
+              src="https://upload.wikimedia.org/wikipedia/en/b/be/Flag_of_England.svg"
+              alt="英格兰圣乔治十字旗"
+              data-fallback="国旗图片加载失败，请替换 flag-panel 内的图片链接。"
+            >
+            <p>ST. GEORGE'S CROSS</p>
+          </div>
+        </div>
+
+        <div class="intro-copy reveal">
+          <p class="eyebrow">The birthplace of football</p>
+          <h2 id="about-title">足球故乡，<br>现代比赛的起点</h2>
+          <p>
+            英格兰位于大不列颠岛中南部，首都伦敦是全球重要的文化、经济与体育中心。圣乔治十字旗、温布利球场与遍布各地的百年俱乐部，共同构成鲜明的国家足球图景。
+          </p>
+          <p>
+            现代足球的规则在英格兰逐步形成，深厚的社区传统让比赛融入城市与家庭生活。从基层联赛到世界瞩目的职业赛场，足球既是竞技，也是代际相传的身份表达。
+          </p>
+          <p>
+            英格兰男子国家队是国际足坛历史最悠久的代表队之一。凭借高强度对抗、快速推进与持续涌现的青年才俊，三狮军团始终是世界杯最具关注度的力量之一。
+          </p>
+
+          <div class="country-facts" aria-label="英格兰足球概况">
+            <div class="fact">
+              <strong>1872</strong>
+              <span>首场正式国际比赛</span>
+            </div>
+            <div class="fact">
+              <strong>Wembley</strong>
+              <span>国家队标志性主场</span>
+            </div>
+            <div class="fact">
+              <strong>Three Lions</strong>
+              <span>国家队经典昵称</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================
+         【历史战绩】板块3
+         历史数据可直接在文字节点中修改
+         ======================================================= -->
+    <section class="history-section" id="history" aria-labelledby="history-title">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div>
+            <span class="section-number">02 / WORLD CUP RECORD</span>
+            <h2 id="history-title">一颗星，<br>一段未完征程</h2>
+          </div>
+          <p>
+            从 1966 年本土登顶，到多次挺进世界杯淘汰赛，英格兰的世界杯故事由荣耀、遗憾和持续更新的期待共同写成。
+          </p>
+        </div>
+
+        <div class="history-stories">
+          <article class="history-story reveal">
+            <div class="history-story-media">
+              <img class="replaceable-image" src="https://cdn.englandfootball.com/-/media/EnglandFootball/Article/england/mens-senior-team/2026/June/Bobby-Moore-1440-20261106.png?h=810&amp;iar=0&amp;w=1440&amp;rev=9b2b1fc5841544888cf332ff5679fe44&amp;hash=CE2B77545C886A564E7CA311D24095E6" alt="博比·摩尔举起1966年世界杯冠军奖杯" data-fallback="1966年经典场面图片加载失败，请替换此图片链接。">
+            </div>
+            <div class="history-story-body">
+              <span class="history-year">1966</span>
+              <h3>温布利加时登顶，唯一一次世界杯冠军</h3>
+              <p>1966年7月30日，英格兰在温布利迎战西德。球队先失球后由杰夫·赫斯特和马丁·彼得斯反超，却在第90分钟被扳平，决赛被拖入加时。</p>
+              <p>赫斯特随后打入极具争议但被判有效的门线进球，并在终场前完成帽子戏法。博比·摩尔最终从女王手中接过雷米特杯，英格兰首次也是迄今唯一一次成为世界冠军。</p>
+              <span class="history-score">决赛 · 英格兰 4–2 西德（加时）</span>
+            </div>
+          </article>
+
+          <article class="history-story reveal">
+            <div class="history-story-media">
+              <img class="replaceable-image" src="https://cdn.englandfootball.com/-/jssmedia/EnglandFootball/Article/england/mens-senior-team/2026/June/Banks-Pele-952-20261106.png?h=536&amp;iar=0&amp;w=952&amp;rev=f9b6092260d34c76ae2aaea856292d78&amp;hash=19A61B07EF90E538D42831AEE72EAC28" alt="戈登·班克斯扑出贝利头球" data-fallback="1970年经典扑救图片加载失败，请替换此图片链接。">
+            </div>
+            <div class="history-story-body">
+              <span class="history-year">1970</span>
+              <h3>班克斯对贝利，世界杯史上最伟大的扑救之一</h3>
+              <p>墨西哥世界杯小组赛对阵巴西，雅伊尔津霍从右路传中，贝利近距离将头球砸向地面，几乎已经准备庆祝进球。</p>
+              <p>戈登·班克斯横向移动后迅速下沉，用右手将反弹球托过横梁。这次扑救兼具预判、爆发力和极限反应，被贝利本人称为他见过的最佳扑救之一。</p>
+              <span class="history-score">小组赛 · 英格兰 0–1 巴西</span>
+            </div>
+          </article>
+
+          <article class="history-story reveal">
+            <div class="history-story-media">
+              <img class="replaceable-image" src="https://cdn.englandfootball.com/-/jssmedia/EnglandFootball/Article/england/mens-senior-team/2026/June/Platt-Italia-90-952-20261106.png?h=536&amp;iar=0&amp;w=952&amp;rev=4adfba908ce54bd18a780efb591a3ccd&amp;hash=E258B2A55292E4D761F707219CABD8E7" alt="英格兰队在1990年世界杯庆祝" data-fallback="1990年经典场面图片加载失败，请替换此图片链接。">
+            </div>
+            <div class="history-story-body">
+              <span class="history-year">1990</span>
+              <h3>普拉特第119分钟凌空绝杀，开启意大利之夏</h3>
+              <p>十六强对阵比利时，双方鏖战至加时最后阶段。保罗·加斯科因开出前场任意球，大卫·普拉特在禁区内转身迎球凌空抽射，将球送入远角。</p>
+              <p>这粒第119分钟的进球把英格兰送入八强。球队随后淘汰喀麦隆并闯入四强，最终在半决赛点球负于西德，留下加斯科因泪洒都灵的时代画面。</p>
+              <span class="history-score">十六强 · 英格兰 1–0 比利时（加时）</span>
+            </div>
+          </article>
+
+          <article class="history-story reveal">
+            <div class="history-story-media">
+              <img class="replaceable-image" src="https://cdn.englandfootball.com/-/media/EnglandFootball/Article/england/mens-senior-team/2026/June/Pickford-Colombia-952-20261106.png?h=536&amp;iar=0&amp;w=952&amp;rev=9c9bff9d1db549919a398a023ae4bd1f&amp;hash=93E2797DD8DED6C977B0655C28A9988A" alt="皮克福德在2018年世界杯点球大战扑救" data-fallback="2018年经典场面图片加载失败，请替换此图片链接。">
+            </div>
+            <div class="history-story-body">
+              <span class="history-year">2018</span>
+              <h3>皮克福德与戴尔终结世界杯点球魔咒</h3>
+              <p>十六强对阵哥伦比亚，凯恩点球打破僵局，英格兰却在补时阶段被米纳头球扳平。加时赛后，比赛进入球队长期难以跨越的点球大战。</p>
+              <p>皮克福德扑出卡洛斯·巴卡的射门，埃里克·戴尔命中制胜点球。英格兰首次在世界杯点球大战获胜，并最终时隔28年再次打进四强。</p>
+              <span class="history-score">十六强 · 英格兰 1–1 哥伦比亚（点球 4–3）</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+    <!-- =======================================================
+         【球员阵容】板块4
+         当前为宣传页示例阵容；大赛名单与号码请按官方信息更新。
+         每张卡片的图片链接均已预留明确替换位置。
+         ======================================================= -->
+    <section class="squad-section" id="squad" aria-labelledby="squad-title">
+      <div class="container">
+        <div class="section-heading squad-heading reveal">
+          <div>
+            <span class="section-number">03 / WORLD CUP SQUAD</span>
+            <h2 id="squad-title">2026 世界杯<br>出战阵容</h2>
+          </div>
+        </div>
+
+        <div class="squad-toolbar reveal">
+          <div class="position-filter" role="group" aria-label="按场上位置筛选球员">
+            <button class="filter-button active" type="button" data-filter="all">全部 26 人</button>
+            <button class="filter-button" type="button" data-filter="goalkeeper">门将</button>
+            <button class="filter-button" type="button" data-filter="defender">后卫</button>
+            <button class="filter-button" type="button" data-filter="midfielder">中场</button>
+            <button class="filter-button" type="button" data-filter="forward">前锋</button>
+          </div>
+        </div>
+
+        <div class="player-grid">
+          <article class="player-card reveal" data-position="goalkeeper">
+            <div class="player-image-wrap">
+              <!-- 官方球员照片：乔丹·皮克福德 / Jordan Pickford -->
+              <img class="player-image replaceable-image" src="https://cdn.englandfootball.com/-/jssmedia/EnglandFootball/PlayerProfile/MenSenior/2025-26/March-2026/Jordan-Pickford.png?h=750&amp;iar=0&amp;w=550&amp;rev=376021049bbd4119a7806a4c186bed8e&amp;hash=F327CAAF61F96C033F9F8DF5648D33B6" alt="乔丹·皮克福德（Jordan Pickford）2026世界杯官方球员照" data-fallback="乔丹·皮克福德图片加载失败，请替换此卡片图片链接。">
+              <span class="shirt-number">01</span>
+            </div>
+            <div class="player-info">
+              <span class="player-position">门将 / Goalkeeper</span>
+              <h3>Jordan Pickford</h3>
+              <p><strong>乔丹·皮克福德</strong>｜大赛经验丰富的主力门将，反应速度与长传发动能力突出。</p>
+            </div>
+          </article>
+
+          <article class="player-card reveal" data-position="defender">
+            <div class="player-image-wrap">
+              <!-- 官方球员照片：埃兹里·孔萨 / Ezri Konsa -->
+              <img class="player-image replaceable-image" src="https://cdn.englandfootball.com/-/jssmedia/EnglandFootball/PlayerProfile/MenSenior/2025-26/March-2026/Ezri-Konsa.png?h=750&amp;iar=0&amp;w=550&amp;rev=d85a4783dd044d82966162e2a0f4fb08&amp;hash=66A621559E583079D041BA3333944840" alt="埃兹里·孔萨（Ezri Konsa）2026世界杯官方球员照" data-fallback="埃兹里·孔萨图片加载失败，请替换此卡片图片链接。">
+              <span class="shirt-number">02</span>
+            </div>
+            <div class="player-info">
+              <span class="player-position">后卫 / Defender</span>
+              <h3>Ezri Konsa</h3>
+              <p><strong>埃兹里·孔萨</strong>｜能够胜任中卫与边路防守，具备速度、对抗和出球稳定性。</p>
+            </div>
+          </article>
+
+          <article class="player-card reveal" data-position="defender">
+            <div class="player-image-wrap">
+              <!-- 官方球员照片：尼科·奥赖利 / Nico O'Reilly -->
+              <img class="player-image replaceable-image" src="https://cdn.englandfootball.com/-/jssmedia/EnglandFootball/PlayerProfile/MenSenior/2025-26/May-2026-WC/oreilly-550.png?h=750&amp;iar=0&amp;w=550&amp;rev=39c192f159154c45a6a29e37190a3876&amp;hash=89FEC28F56688143F1070DEB21E32655" alt="尼科·奥赖利（Nico O'Reilly）2026世界杯官方球员照" data-fallback="尼科·奥赖利图片加载失败，请替换此卡片图片链接。">
+              <span class="shirt-number">03</span>
+            </div>
+            <div class="player-info">
+              <span class="player-position">后卫 / Defender</span>
+              <h3>Nico O'Reilly</h3>
+              <p><strong>尼科·奥赖利</strong>｜首次参加成年大赛的年轻后卫，拥有良好的推进意识和位置适应性。</p>
+            </div>
+          </article>
+
+          <article class="player-card reveal" data-position="midfielder">
+            <div class="player-image-wrap">
+              <!-- 官方球员照片：德克兰·赖斯 / Declan Rice -->
+              <img class="player-image replaceable-image" src="https://cdn.englandfootball.com/-/jssmedia/EnglandFootball/PlayerProfile/MenSenior/2025-26/March-2026/Declan-Rice.png?h=750&amp;iar=0&amp;w=550&amp;rev=d939d63d20864d20896e827311993f62&amp;hash=6507BAC02795305EEC96E252B8433058" alt="德克兰·赖斯（Declan Rice）2026世界杯官方球员照" data-fallback="德克兰·赖斯图片加载失败，请替换此卡片图片链接。">
+              <span class="shirt-number">04</span>
+            </div>
+            <div class="player-info">
+              <span class="player-position">中场 / Midfielder</span>
+              <h3>Declan Rice</h3>
+              <p><strong>德克兰·赖斯</strong>｜以覆盖、拦截和向前输送维持英格兰中场平衡。</p>
+            </div>
+          </article>
+
+          <article class="player-card reveal" data-position="defender">
+            <div class="player-image-wrap">
+              <!-- 官方球员照片：约翰·斯通斯 / John Stones -->
+              <img class="player-image replaceable-image" src="https://cdn.englandfootball.com/-/jssmedia/EnglandFootball/PlayerProfile/MenSenior/2025-26/March-2026/John-Stones.png?h=750&amp;iar=0&amp;w=550&amp;rev=da970bd9fb214775a38450246f102c93&amp;hash=939C85DCB0DE06DBD74B60C883F120A8" alt="约翰·斯通斯（John Stones）2026世界杯官方球员照" data-fallback="约翰·斯通斯图片加载失败，请替换此卡片图片链接。">
+              <span class="shirt-number">05</span>
+            </div>
+            <div class="player-info">
+              <span class="player-position">后卫 / Defender</span>
+              <h3>John Stones</h3>
+              <p><strong>约翰·斯通斯</strong>｜出球能力突出的中卫，可前移协助中场组织。</p>
+            </div>
+          </article>
+
+          <article class="player-card reveal" data-position="defender">
+            <div class="player-image-wrap">
+              <!-- 官方球员照片：马克·格伊 / Marc Guehi -->
+              <img class="player-image replaceable-image" src="https://cdn.englandfootball.com/-/jssmedia/EnglandFootball/PlayerProfile/MenSenior/2025-26/March-2026/Marc-Guehi.png?h=750&amp;iar=0&amp;w=550&amp;rev=d716e2e944bf4727b957410ed3ab753a&amp;hash=93D1A0B5DA1DD50AC907CE50109AE315" alt="马克·格伊（Marc Guehi）2026世界杯官方球员照" data-fallback="马克·格伊图片加载失败，请替换此卡片图片链接。">
+              <span class="shirt-number">06</span>
+            </div>
+            <div class="player-info">
+              <span class="player-position">后卫 / Defender</span>
+              <h3>Marc Guehi</h3>
+              <p><strong>马克·格伊</strong>｜防守判断冷静，擅长正面拦截和快速补位。</p>
+            </div>
+          </article>
+
+          <article class="player-card reveal" data-position="forward">
+            <div class="player-image-wrap">
+              <!-- 官方球员照片：布卡约·萨卡 / Bukayo Saka -->
+              <img class="player-image replaceable-image" src="https://cdn.englandfootball.com/-/jssmedia/EnglandFootball/PlayerProfile/MenSenior/2025-26/March-2026/Bukayo-Saka.png?h=750&amp;iar=0&amp;w=550&amp;rev=4433ab9cadb4481aa12df88a9983ef8d&amp;hash=36A119D7B5C6E4A2D43A05D4FD4F59D4" alt="布卡约·萨卡（Bukayo Saka）2026世界杯官方球员照" data-fallback="布卡约·萨卡图片加载失败，请替换此卡片图片链接。">
+              <span class="shirt-number">07</span>
+            </div>
+            <div class="player-info">
+              <span class="player-position">前锋 / Forward</span>
+              <h3>Bukayo Saka</h3>
+              <p><strong>布卡约·萨卡</strong>｜右路突破、配合和终结能力兼备的主要进攻点。</p>
+            </div>
+          </article>
+
+          <article class="player-card reveal" data-position="midfielder">
+            <div class="player-image-wrap">
+              <!-- 官方球员照片：埃利奥特·安德森 / Elliot Anderson -->
+              <img class="player-image replaceable-image" src="https://cdn.englandfootball.com/-/jssmedia/EnglandFootball/PlayerProfile/MenSenior/2025-26/March-2026/Elliot-Anderson.png?h=750&amp;iar=0&amp;w=550&amp;rev=b8ea4a459bfa474b9ee4f11ae5f79bed&amp;hash=04BE6E13C5C2F1C7AE7D06F087C61961" alt="埃利奥特·安德森（Elliot Anderson）2026世界杯官方球员照" data-fallback="埃利奥特·安德森图片加载失败，请替换此卡片图片链接。">
+              <span class="shirt-number">08</span>
+            </div>
+            <div class="player-info">
+              <span class="player-position">中场 / Midfielder</span>
+              <h3>Elliot Anderson</h3>
+              <p><strong>埃利奥特·安德森</strong>｜跑动积极、对抗坚韧，能够在中场完成衔接与压迫。</p>
+            </div>
+          </article>
+
+          <article class="player-card reveal" data-position="forward">
+            <div class="player-image-wrap">
+              <!-- 官方球员照片：哈里·凯恩 / Harry Kane -->
+              <img class="player-image replaceable-image" src="https://cdn.englandfootball.com/-/jssmedia/EnglandFootball/PlayerProfile/MenSenior/2025-26/March-2026/Harry-Kane.png?h=750&amp;iar=0&amp;w=550&amp;rev=4410060d06b04a2e89953a179e54dc53&amp;hash=77E75E6B7736579A730FE571343092EF" alt="哈里·凯恩（Harry Kane）2026世界杯官方球员照" data-fallback="哈里·凯恩图片加载失败，请替换此卡片图片链接。">
+              <span class="shirt-number">09</span>
+            </div>
+            <div class="player-info">
+              <span class="player-position">前锋 / Forward · Captain</span>
+              <h3>Harry Kane</h3>
+              <p><strong>哈里·凯恩</strong>｜队长与进攻核心，兼具终结、支点和回撤组织能力。</p>
+            </div>
+          </article>
+
+          <article class="player-card reveal" data-position="midfielder">
+            <div class="player-image-wrap">
+              <!-- 官方球员照片：裘德·贝林厄姆 / Jude Bellingham -->
+              <img class="player-image replaceable-image" src="https://cdn.englandfootball.com/-/jssmedia/EnglandFootball/PlayerProfile/MenSenior/2025-26/May-2026-WC/550-jude-bellingham.png?h=750&amp;iar=0&amp;w=550&amp;rev=fb3e2d57cf314498914585a3c72db579&amp;hash=1107E0776D8D3B12B4BD8B6665DA1D3A" alt="裘德·贝林厄姆（Jude Bellingham）2026世界杯官方球员照" data-fallback="裘德·贝林厄姆图片加载失败，请替换此卡片图片链接。">
+              <span class="shirt-number">10</span>
+            </div>
+            <div class="player-info">
+              <span class="player-position">中场 / Midfielder</span>
+              <h3>Jude Bellingham</h3>
+              <p><strong>裘德·贝林厄姆</strong>｜覆盖范围和前插能力出色，是攻守转换的重要发动机。</p>
+            </div>
+          </article>
+
+          <article class="player-card reveal" data-position="forward">
+            <div class="player-image-wrap">
+              <!-- 官方球员照片：马库斯·拉什福德 / Marcus Rashford -->
+              <img class="player-image replaceable-image" src="https://cdn.englandfootball.com/-/jssmedia/EnglandFootball/PlayerProfile/MenSenior/2025-26/March-2026/Marcus-Rashford.png?h=750&amp;iar=0&amp;w=550&amp;rev=ca9cef7625e84e1abbed21b219809ffd&amp;hash=BFEBBFA0E12CF10F239E37CF1F5BB004" alt="马库斯·拉什福德（Marcus Rashford）2026世界杯官方球员照" data-fallback="马库斯·拉什福德图片加载失败，请替换此卡片图片链接。">
+              <span class="shirt-number">11</span>
+            </div>
+            <div class="player-info">
+              <span class="player-position">前锋 / Forward</span>
+              <h3>Marcus Rashford</h3>
+              <p><strong>马库斯·拉什福德</strong>｜擅长高速冲击防线，在左路和中锋位置均能制造纵深。</p>
+            </div>
+          </article>
+
+          <article class="player-card reveal" data-position="defender">
+            <div class="player-image-wrap">
+              <!-- 官方球员照片：特雷沃·查洛巴 / Trevoh Chalobah -->
+              <img class="player-image replaceable-image" src="https://cdn.englandfootball.com/-/jssmedia/EnglandFootball/PlayerProfile/MenSenior/2024-25/trevoh-chalobah-new.png?h=750&amp;iar=0&amp;w=550&amp;rev=2b16491c7683497c99df22e7b78c400b&amp;hash=5335BC61999D2D526D5247752218766F" alt="特雷沃·查洛巴（Trevoh Chalobah）2026世界杯官方球员照" data-fallback="特雷沃·查洛巴图片加载失败，请替换此卡片图片链接。">
+              <span class="shirt-number">12</span>
+            </div>
+            <div class="player-info">
+              <span class="player-position">后卫 / Defender</span>
+              <h3>Trevoh Chalobah</h3>
+              <p><strong>特雷沃·查洛巴</strong>｜因利夫拉门托伤退入替名单，可覆盖多个后场位置。</p>
+            </div>
+          </article>
+
+          <article class="player-card reveal" data-position="goalkeeper">
+            <div class="player-image-wrap">
+              <!-- 官方球员照片：迪恩·亨德森 / Dean Henderson -->
+              <img class="player-image replaceable-image" src="https://cdn.englandfootball.com/-/jssmedia/EnglandFootball/PlayerProfile/MenSenior/2025-26/March-2026/Dean-Henderson.png?h=750&amp;iar=0&amp;w=550&amp;rev=05816a46e6954afca110f6e7b28d36ea&amp;hash=37ABE20E6C812DB0707A3E3A7B87D017" alt="迪恩·亨德森（Dean Henderson）2026世界杯官方球员照" data-fallback="迪恩·亨德森图片加载失败，请替换此卡片图片链接。">
+              <span class="shirt-number">13</span>
+            </div>
+            <div class="player-info">
+              <span class="player-position">门将 / Goalkeeper</span>
+              <h3>Dean Henderson</h3>
+              <p><strong>迪恩·亨德森</strong>｜出击果断、扑救范围大，为门将位置提供可靠竞争。</p>
+            </div>
+          </article>
+
+          <article class="player-card reveal" data-position="midfielder">
+            <div class="player-image-wrap">
+              <!-- 官方球员照片：乔丹·亨德森 / Jordan Henderson -->
+              <img class="player-image replaceable-image" src="https://cdn.englandfootball.com/-/jssmedia/EnglandFootball/PlayerProfile/MenSenior/2025-26/March-2026/Jordan-Henderson.png?h=750&amp;iar=0&amp;w=550&amp;rev=7b28e79dbdc445348546eed8db0edc4f&amp;hash=2C0D18DFBC72CFDB4A103C2FC5966983" alt="乔丹·亨德森（Jordan Henderson）2026世界杯官方球员照" data-fallback="乔丹·亨德森图片加载失败，请替换此卡片图片链接。">
+              <span class="shirt-number">14</span>
+            </div>
+            <div class="player-info">
+              <span class="player-position">中场 / Midfielder</span>
+              <h3>Jordan Henderson</h3>
+              <p><strong>乔丹·亨德森</strong>｜第四次参加世界杯，以经验、沟通和无球纪律稳定球队。</p>
+            </div>
+          </article>
+
+          <article class="player-card reveal" data-position="defender">
+            <div class="player-image-wrap">
+              <!-- 官方球员照片：丹·伯恩 / Dan Burn -->
+              <img class="player-image replaceable-image" src="https://cdn.englandfootball.com/-/jssmedia/EnglandFootball/PlayerProfile/MenSenior/2025-26/May-2026-WC/550-dan-burn.png?h=750&amp;iar=0&amp;w=550&amp;rev=7b805ff93aaa4764b318963ae87ead0b&amp;hash=96E6985F0B19840C1E2BBE34DA8F50B6" alt="丹·伯恩（Dan Burn）2026世界杯官方球员照" data-fallback="丹·伯恩图片加载失败，请替换此卡片图片链接。">
+              <span class="shirt-number">15</span>
+            </div>
+            <div class="player-info">
+              <span class="player-position">后卫 / Defender</span>
+              <h3>Dan Burn</h3>
+              <p><strong>丹·伯恩</strong>｜身高与空中对抗优势明显，可担任中卫或左侧防守角色。</p>
+            </div>
+          </article>
+
+          <article class="player-card reveal" data-position="midfielder">
+            <div class="player-image-wrap">
+              <!-- 官方球员照片：科比·梅努 / Kobbie Mainoo -->
+              <img class="player-image replaceable-image" src="https://cdn.englandfootball.com/-/jssmedia/EnglandFootball/PlayerProfile/MenSenior/2025-26/May-2026-WC/550-kobbie.png?h=750&amp;iar=0&amp;w=550&amp;rev=1bf46d08c58744bcb3ef3b4bfb1fde39&amp;hash=8F39E1007E96E801E59B38C1D2DF3524" alt="科比·梅努（Kobbie Mainoo）2026世界杯官方球员照" data-fallback="科比·梅努图片加载失败，请替换此卡片图片链接。">
+              <span class="shirt-number">16</span>
+            </div>
+            <div class="player-info">
+              <span class="player-position">中场 / Midfielder</span>
+              <h3>Kobbie Mainoo</h3>
+              <p><strong>科比·梅努</strong>｜在压力下控球沉稳，能够通过转身和短传摆脱中场围抢。</p>
+            </div>
+          </article>
+
+          <article class="player-card reveal" data-position="midfielder">
+            <div class="player-image-wrap">
+              <!-- 官方球员照片：摩根·罗杰斯 / Morgan Rogers -->
+              <img class="player-image replaceable-image" src="https://cdn.englandfootball.com/-/jssmedia/EnglandFootball/PlayerProfile/MenSenior/2025-26/March-2026/Morgan-Rogers.png?h=750&amp;iar=0&amp;w=550&amp;rev=1c5f364b0ea3412db72306b4081e50e3&amp;hash=9B08B11C1FD4EAC98F27BCB8ECF4EF67" alt="摩根·罗杰斯（Morgan Rogers）2026世界杯官方球员照" data-fallback="摩根·罗杰斯图片加载失败，请替换此卡片图片链接。">
+              <span class="shirt-number">17</span>
+            </div>
+            <div class="player-info">
+              <span class="player-position">中场 / Midfielder</span>
+              <h3>Morgan Rogers</h3>
+              <p><strong>摩根·罗杰斯</strong>｜推进力量强，能在前腰与边路之间完成持球冲击。</p>
+            </div>
+          </article>
+
+          <article class="player-card reveal" data-position="forward">
+            <div class="player-image-wrap">
+              <!-- 官方球员照片：安东尼·戈登 / Anthony Gordon -->
+              <img class="player-image replaceable-image" src="https://cdn.englandfootball.com/-/jssmedia/EnglandFootball/PlayerProfile/MenSenior/2025-26/March-2026/Anthony-Gordon.png?h=750&amp;iar=0&amp;w=550&amp;rev=de9ef36d2f174a6d9e1577cc02832273&amp;hash=F7366BE01A4CA3788CFFE1885B5619B3" alt="安东尼·戈登（Anthony Gordon）2026世界杯官方球员照" data-fallback="安东尼·戈登图片加载失败，请替换此卡片图片链接。">
+              <span class="shirt-number">18</span>
+            </div>
+            <div class="player-info">
+              <span class="player-position">前锋 / Forward</span>
+              <h3>Anthony Gordon</h3>
+              <p><strong>安东尼·戈登</strong>｜依靠速度、反跑和前场压迫持续攻击对手身后。</p>
+            </div>
+          </article>
+
+          <article class="player-card reveal" data-position="forward">
+            <div class="player-image-wrap">
+              <!-- 官方球员照片：奥利·沃特金斯 / Ollie Watkins -->
+              <img class="player-image replaceable-image" src="https://cdn.englandfootball.com/-/jssmedia/EnglandFootball/PlayerProfile/MenSenior/2025-26/March-2026/Ollie-Watkins.png?h=750&amp;iar=0&amp;w=550&amp;rev=6f04f814f03041dbb7fca559e55496e2&amp;hash=C58112DF2DAEB9EBCCDBBD4270E2D0DF" alt="奥利·沃特金斯（Ollie Watkins）2026世界杯官方球员照" data-fallback="奥利·沃特金斯图片加载失败，请替换此卡片图片链接。">
+              <span class="shirt-number">19</span>
+            </div>
+            <div class="player-info">
+              <span class="player-position">前锋 / Forward</span>
+              <h3>Ollie Watkins</h3>
+              <p><strong>奥利·沃特金斯</strong>｜无球跑动敏锐，善于利用防线空当完成快速终结。</p>
+            </div>
+          </article>
+
+          <article class="player-card reveal" data-position="forward">
+            <div class="player-image-wrap">
+              <!-- 官方球员照片：诺尼·马杜埃凯 / Noni Madueke -->
+              <img class="player-image replaceable-image" src="https://cdn.englandfootball.com/-/jssmedia/EnglandFootball/PlayerProfile/MenSenior/2025-26/March-2026/Noni-Madueke.png?h=750&amp;iar=0&amp;w=550&amp;rev=aa83884877d74f579ffb5b207057a6d2&amp;hash=D2FBA0DEAF4F834E67819D80B02E9010" alt="诺尼·马杜埃凯（Noni Madueke）2026世界杯官方球员照" data-fallback="诺尼·马杜埃凯图片加载失败，请替换此卡片图片链接。">
+              <span class="shirt-number">20</span>
+            </div>
+            <div class="player-info">
+              <span class="player-position">前锋 / Forward</span>
+              <h3>Noni Madueke</h3>
+              <p><strong>诺尼·马杜埃凯</strong>｜左脚右边锋，擅长一对一突破后内切射门。</p>
+            </div>
+          </article>
+
+          <article class="player-card reveal" data-position="midfielder">
+            <div class="player-image-wrap">
+              <!-- 官方球员照片：埃贝雷奇·埃泽 / Eberechi Eze -->
+              <img class="player-image replaceable-image" src="https://cdn.englandfootball.com/-/jssmedia/EnglandFootball/PlayerProfile/MenSenior/2025-26/May-2026-WC/eze-550.png?h=750&amp;iar=0&amp;w=550&amp;rev=d7207d527b4049a9a2cd95aae52d19ba&amp;hash=AE388183AE53BE5B909E93BC3AD727D9" alt="埃贝雷奇·埃泽（Eberechi Eze）2026世界杯官方球员照" data-fallback="埃贝雷奇·埃泽图片加载失败，请替换此卡片图片链接。">
+              <span class="shirt-number">21</span>
+            </div>
+            <div class="player-info">
+              <span class="player-position">中场 / Midfielder</span>
+              <h3>Eberechi Eze</h3>
+              <p><strong>埃贝雷奇·埃泽</strong>｜盘带节奏灵活，能在前腰与左侧区域创造机会。</p>
+            </div>
+          </article>
+
+          <article class="player-card reveal" data-position="forward">
+            <div class="player-image-wrap">
+              <!-- 官方球员照片：伊万·托尼 / Ivan Toney -->
+              <img class="player-image replaceable-image" src="https://cdn.englandfootball.com/-/jssmedia/EnglandFootball/PlayerProfile/MenSenior/2025-26/May-2026-WC/ivan-toney-050626-550.png?h=750&amp;iar=0&amp;w=550&amp;rev=ab01c4342ad94a5e9bcf89206a5eaa6c&amp;hash=EB942E1B0288F2EFA5BAF75FC29CCEC2" alt="伊万·托尼（Ivan Toney）2026世界杯官方球员照" data-fallback="伊万·托尼图片加载失败，请替换此卡片图片链接。">
+              <span class="shirt-number">22</span>
+            </div>
+            <div class="player-info">
+              <span class="player-position">前锋 / Forward</span>
+              <h3>Ivan Toney</h3>
+              <p><strong>伊万·托尼</strong>｜对抗和背身能力扎实，同时拥有稳定的点球技术。</p>
+            </div>
+          </article>
+
+          <article class="player-card reveal" data-position="goalkeeper">
+            <div class="player-image-wrap">
+              <!-- 官方球员照片：詹姆斯·特拉福德 / James Trafford -->
+              <img class="player-image replaceable-image" src="https://cdn.englandfootball.com/-/jssmedia/EnglandFootball/PlayerProfile/MenSenior/2025-26/March-2026/James-Trafford.png?h=750&amp;iar=0&amp;w=550&amp;rev=316fe2dc72894014866a5e1cf77bb580&amp;hash=0C3D7F3596DCDAF98F313D4FC3C5C56D" alt="詹姆斯·特拉福德（James Trafford）2026世界杯官方球员照" data-fallback="詹姆斯·特拉福德图片加载失败，请替换此卡片图片链接。">
+              <span class="shirt-number">23</span>
+            </div>
+            <div class="player-info">
+              <span class="player-position">门将 / Goalkeeper</span>
+              <h3>James Trafford</h3>
+              <p><strong>詹姆斯·特拉福德</strong>｜年轻门将，具备优秀反应速度和持续成长的传控能力。</p>
+            </div>
+          </article>
+
+          <article class="player-card reveal" data-position="defender">
+            <div class="player-image-wrap">
+              <!-- 官方球员照片：里斯·詹姆斯 / Reece James -->
+              <img class="player-image replaceable-image" src="https://cdn.englandfootball.com/-/jssmedia/EnglandFootball/PlayerProfile/MenSenior/2025-26/May-2026-WC/reece-james-050626-550.png?h=750&amp;iar=0&amp;w=550&amp;rev=ef4d7f612aeb4a348923808875ba16c3&amp;hash=D65DDC954E5DC7757620C56E1095C84C" alt="里斯·詹姆斯（Reece James）2026世界杯官方球员照" data-fallback="里斯·詹姆斯图片加载失败，请替换此卡片图片链接。">
+              <span class="shirt-number">24</span>
+            </div>
+            <div class="player-info">
+              <span class="player-position">后卫 / Defender</span>
+              <h3>Reece James</h3>
+              <p><strong>里斯·詹姆斯</strong>｜身体强壮、传中质量高，可在边后卫与翼卫位置提供宽度。</p>
+            </div>
+          </article>
+
+          <article class="player-card reveal" data-position="defender">
+            <div class="player-image-wrap">
+              <!-- 官方球员照片：杰德·斯彭斯 / Djed Spence -->
+              <img class="player-image replaceable-image" src="https://cdn.englandfootball.com/-/jssmedia/EnglandFootball/PlayerProfile/MenSenior/2025-26/March-2026/Djed-Spence.png?h=750&amp;iar=0&amp;w=550&amp;rev=2ca4f9feb7d749f28a3574d9c77edcad&amp;hash=B31D7D9F06D77CA7F5A119F9E8147C0B" alt="杰德·斯彭斯（Djed Spence）2026世界杯官方球员照" data-fallback="杰德·斯彭斯图片加载失败，请替换此卡片图片链接。">
+              <span class="shirt-number">25</span>
+            </div>
+            <div class="player-info">
+              <span class="player-position">后卫 / Defender</span>
+              <h3>Djed Spence</h3>
+              <p><strong>杰德·斯彭斯</strong>｜爆发力出色的边路防守球员，能够高速往返并参与推进。</p>
+            </div>
+          </article>
+
+          <article class="player-card reveal" data-position="defender">
+            <div class="player-image-wrap">
+              <!-- 官方球员照片：贾雷尔·昆萨 / Jarell Quansah -->
+              <img class="player-image replaceable-image" src="https://cdn.englandfootball.com/-/jssmedia/EnglandFootball/PlayerProfile/MenSenior/2025-26/March-2026/Jarell-Quansah.png?h=750&amp;iar=0&amp;w=550&amp;rev=8463106d633b48c990132ce64b2d89f9&amp;hash=43D2AD13E1E60FFEC2BFFB5A1153176E" alt="贾雷尔·昆萨（Jarell Quansah）2026世界杯官方球员照" data-fallback="贾雷尔·昆萨图片加载失败，请替换此卡片图片链接。">
+              <span class="shirt-number">26</span>
+            </div>
+            <div class="player-info">
+              <span class="player-position">后卫 / Defender</span>
+              <h3>Jarell Quansah</h3>
+              <p><strong>贾雷尔·昆萨</strong>｜年轻中卫，拥有良好的身体条件、覆盖速度和向前传球能力。</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+    <!-- =======================================================
+         附加板块5：世界杯出征口号与赛事寄语
+         ======================================================= -->
+    <section class="campaign-section" id="campaign" aria-labelledby="campaign-title">
+      <div class="container campaign-grid">
+        <div class="campaign-title reveal">
+          <span>World Cup Message</span>
+          <h2 id="campaign-title">Roar<br>Together.</h2>
+          <p>让每一次奔跑汇成同一个方向，让每一次呐喊穿过温布利与北美赛场。三狮同行，为英格兰而战。无论比赛走向何方，同一枚队徽、同一个国家、同一种声音，将陪伴球队走到最后一刻。</p>
+          <div class="campaign-signoff" aria-label="出征寄语">
+            <span>One badge</span>
+            <span>One nation</span>
+            <span>One roar</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span class="footer-badge">England · Three Lions</span>
+      <span>世界杯主题宣传网页｜名单与号码依据英格兰足总 2026 年 6 月 4 日公布信息。</span>
+    </div>
+  </footer>
+
+  <script>
+    "use strict";
+
+    /* =========================================================
+       图片加载失败回退
+       每个需要替换的图片均含 data-fallback 提示文字
+       ========================================================= */
+    const replaceableImages = document.querySelectorAll(".replaceable-image");
+
+    replaceableImages.forEach((image) => {
+      image.addEventListener("error", () => {
+        const fallback = document.createElement("div");
+        fallback.className = "image-fallback";
+        fallback.style.display = "flex";
+        fallback.textContent = image.dataset.fallback || "图片加载失败，请替换此处图片链接。";
+        image.replaceWith(fallback);
+      }, { once: true });
+    });
+
+    /* =========================================================
+       手机导航菜单
+       ========================================================= */
+    const menuButton = document.querySelector(".menu-button");
+    const mainNav = document.querySelector(".main-nav");
+
+    menuButton.addEventListener("click", () => {
+      const isOpen = mainNav.classList.toggle("open");
+      menuButton.setAttribute("aria-expanded", String(isOpen));
+      menuButton.setAttribute("aria-label", isOpen ? "关闭导航菜单" : "打开导航菜单");
+    });
+
+    mainNav.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        mainNav.classList.remove("open");
+        menuButton.setAttribute("aria-expanded", "false");
+        menuButton.setAttribute("aria-label", "打开导航菜单");
+      });
+    });
+
+    /* =========================================================
+       球员位置筛选
+       ========================================================= */
+    const filterButtons = document.querySelectorAll(".filter-button");
+    const playerCards = document.querySelectorAll(".player-card");
+
+    filterButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const selectedFilter = button.dataset.filter;
+
+        filterButtons.forEach((item) => item.classList.remove("active"));
+        button.classList.add("active");
+
+        playerCards.forEach((card) => {
+          const shouldShow = selectedFilter === "all" || card.dataset.position === selectedFilter;
+          card.hidden = !shouldShow;
+        });
+      });
+    });
+
+    /* =========================================================
+       入场动画、数字动画与当前导航高亮
+       ========================================================= */
+    const revealItems = document.querySelectorAll(".reveal");
+    const countItems = document.querySelectorAll(".count-up");
+    const sections = document.querySelectorAll("main section[id]");
+    const navLinks = document.querySelectorAll(".main-nav a");
+
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    revealItems.forEach((item) => revealObserver.observe(item));
+
+    const countObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+
+        const element = entry.target;
+        const target = Number(element.dataset.target);
+        const duration = 1100;
+        const startTime = performance.now();
+
+        const updateCount = (currentTime) => {
+          const progress = Math.min((currentTime - startTime) / duration, 1);
+          const easedProgress = 1 - Math.pow(1 - progress, 3);
+          element.textContent = Math.round(target * easedProgress).toLocaleString("en-US");
+
+          if (progress < 1) requestAnimationFrame(updateCount);
+        };
+
+        requestAnimationFrame(updateCount);
+        observer.unobserve(element);
+      });
+    }, { threshold: 0.45 });
+
+    countItems.forEach((item) => countObserver.observe(item));
+
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+
+        navLinks.forEach((link) => {
+          const isCurrent = link.getAttribute("href") === `#${entry.target.id}`;
+          link.classList.toggle("active", isCurrent);
+        });
+      });
+    }, { rootMargin: "-35% 0px -58% 0px" });
+
+    sections.forEach((section) => sectionObserver.observe(section));
+  </script>
+</body>
+</html>
